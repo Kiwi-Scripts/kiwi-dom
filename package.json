@@ -1,9 +1,10 @@
 {
   "name": "@kiwi-js/dom",
   "version": "0.0.0",
-  "description": "Framework-free, predicate-driven DOM helpers: closest match, nearest descendants, element walking and description.",
+  "description": "Framework-free DOM helpers: predicate-driven element finding and description, plus small browser utilities shared between kiwi projects.",
   "keywords": [
     "dom",
+    "shadow-dom",
     "kiwi"
   ],
   "license": "MIT",
