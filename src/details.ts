@@ -5,12 +5,19 @@ export function openKeys( container: ParentNode ): Set<string | undefined> {
 
 /**
  * Re-renders a container while keeping which `details` are expanded (matched by `data-key`) and the scroll position.
- * `details` without a key are matched as a group, so give every one a key that you want to keep.
+ * A `details` that did not exist before keeps the state the re-render gave it, so new content can start expanded.
+ * `details` without a key cannot be matched and are left as rendered.
  */
 export function keepState( container: HTMLElement, rerender: () => void ): void {
-    const open = openKeys( container );
+    const before = new Map<string, boolean>();
+    container.querySelectorAll<HTMLDetailsElement>( 'details[data-key]' ).forEach( d => before.set( d.dataset.key!, d.open ) );
     const scrollTop = container.scrollTop;
     rerender();
-    container.querySelectorAll<HTMLDetailsElement>( 'details' ).forEach( d => d.open = open.has( d.dataset.key ) );
+    container.querySelectorAll<HTMLDetailsElement>( 'details[data-key]' ).forEach( d => {
+        const open = before.get( d.dataset.key! );
+        if ( open !== undefined ) {
+            d.open = open;
+        }
+    } );
     container.scrollTop = scrollTop;
 }

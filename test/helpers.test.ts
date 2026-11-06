@@ -123,4 +123,11 @@ describe( 'keepState', () => {
         expect( Array.from( container.querySelectorAll( 'details' ), d => d.open ) ).toEqual( [true, false] );
         expect( container.scrollTop ).toBe( 7 );
     } );
+
+    it( 'leaves details that are new, or have no key, as rendered', () => {
+        const container = htmlEl( 'div', {}, detail( 'a', true ) );
+        document.body.append( container );
+        keepState( container, () => container.replaceChildren( detail( 'a' ), detail( 'fresh', true ), htmlEl( 'details', { attrs: { open: true } } ) ) );
+        expect( Array.from( container.querySelectorAll( 'details' ), d => d.open ) ).toEqual( [true, true, true] );
+    } );
 } );

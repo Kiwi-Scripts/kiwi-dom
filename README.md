@@ -28,7 +28,7 @@ A *test* is `( el ) => value`; a falsy result means "no match", anything else is
 - Events: `isEditing( ev )` (is the event from a text field, shadow-DOM aware), `trackPointer( { onMove, onEnd } )` (follow the pointer for a drag until release; returns a canceller).
 - Geometry: `clamp`, `nearPoint( size, at, { offset, margin, viewport } )` (place a box next to a point, flipping at the edges), `placeBox( box, el )` (outline an element, or hide the box).
 - Building: `h( tag, { class, text, title, dataset, style, attrs, on }, ...children )`, `svgEl`, `svgIcon( path, viewBox )`.
-- Details: `openKeys( container )`, `keepState( container, rerender )` keep expanded `details` (by `data-key`) and the scroll position across a re-render.
+- Details: `openKeys( container )`, `keepState( container, rerender )` keep expanded `details` (by `data-key`) and the scroll position across a re-render; a `details` that is new keeps the state it was rendered with.
 - Plain utilities: `createEmitter()` (typed emitter), `createScheduler( run, interval, runOutside )` (throttled refresh; `runOutside` keeps the timer out of a framework's change detection), `memoryStorage()`, `webStorage()`, `localStorageAdapter()`, `sessionStorageAdapter()` (storage that never throws).
 
 `@kiwi-js/panels` still has its own copies of these; moving it over to this package is a separate change.
