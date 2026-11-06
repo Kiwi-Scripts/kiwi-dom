@@ -8,3 +8,8 @@ export * from './events';
 export * from './geometry';
 export * from './build';
 export * from './details';
+
+// Not DOM, but needed by every overlay-like tool
+export * from './emitter';
+export * from './scheduler';
+export * from './storage';
